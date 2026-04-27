@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumzworld Pediatric Triage Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        [dir="rtl"] { direction: rtl; }
+        .loading { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .mumz-pink { background-color: #E91E63; }
+        .mumz-pink-hover:hover { background-color: #C2185B; }
+        .mumz-navy { color: #1A237E; }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen">
+    <div id="app" class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="18" r="18" fill="#E91E63"/>
+                    <path d="M10 22 Q14 12 18 18 Q22 24 26 14" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <circle cx="18" cy="10" r="3" fill="white"/>
+                </svg>
+                <h1 class="text-3xl font-bold" style="color:#E91E63;">mumzworld</h1>
+            </div>
+            <p class="text-gray-500 text-sm font-medium tracking-wide uppercase">Pediatric Symptom Triage</p>
+        </div>
+
+        <!-- Language Toggle -->
+        <div class="flex justify-center mb-6">
+            <button id="langToggle" class="mumz-pink text-white px-6 py-2 rounded-lg mumz-pink-hover transition">
+                <span id="toggleText">Switch to Arabic / التبديل إلى العربية</span>
+            </button>
+        </div>
+
+        <!-- Input Form -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <form id="triageForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2" id="labelSymptoms">
+                        Describe your child's symptoms
+                    </label>
+                    <textarea
+                        id="symptoms"
+                        rows="4"
+                        class="w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                        placeholder="e.g., My baby has a fever of 38.5°C for 2 days, runny nose, and is not eating well"
+                        required
+                        minlength="10"
+                        maxlength="1000"
+                    ></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2" id="labelAge">
+                            Child's age (months)
+                        </label>
+                        <input
+                            type="number"
+                            id="childAge"
+                            class="w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-500"
+                            placeholder="e.g., 18"
+                            required
+                            min="0"
+                            max="216"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2" id="labelTemp">
+                            Temperature (°C) - Optional
+                        </label>
+                        <input
+                            type="number"
+                            step="0.1"
+                            id="temperature"
+                            class="w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-500"
+                            placeholder="e.g., 38.5"
+                            min="35"
+                            max="43"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2" id="labelDuration">
+                            Duration (hours) - Optional
+                        </label>
+                        <input
+                            type="number"
+                            id="duration"
+                            class="w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-500"
+                            placeholder="e.g., 48"
+                            min="0"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    id="submitBtn"
+                    class="w-full mumz-pink text-white font-semibold py-3 rounded-lg mumz-pink-hover transition"
+                >
+                    Get Triage Assessment
+                </button>
+            </form>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="hidden bg-pink-50 border border-pink-300 rounded-lg p-6 text-center">
+            <div class="loading text-pink-600 text-lg font-semibold">Analyzing symptoms...</div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6">
+            <h3 class="text-red-800 font-bold text-lg mb-2">Error</h3>
+            <p id="errorMessage" class="text-red-700"></p>
+        </div>
+
+        <!-- Response Card -->
+        <div id="response" class="hidden bg-white rounded-lg shadow-md p-6">
+            <!-- Severity Badge -->
+            <div class="mb-4">
+                <span id="severityBadge" class="inline-block px-4 py-2 rounded-full text-white font-semibold text-lg"></span>
+            </div>
+
+            <!-- Defer to Doctor Banner -->
+            <div id="deferBanner" class="hidden bg-red-100 border-l-4 border-red-500 p-4 mb-4">
+                <p class="text-red-800 font-bold">⚠️ <span id="deferText">Please consult a doctor</span></p>
+                <p id="deferReason" class="text-red-700 text-sm mt-1"></p>
+            </div>
+
+            <!-- Suggested Action -->
+            <div class="mb-6">
+                <h3 class="text-gray-800 font-bold text-xl mb-2" id="labelAction">What to do:</h3>
+                <p id="suggestedAction" class="text-gray-700 text-lg"></p>
+            </div>
+
+            <!-- Severity Reasoning -->
+            <div class="mb-6">
+                <h3 class="text-gray-800 font-bold text-lg mb-2" id="labelReasoning">Why this assessment:</h3>
+                <p id="severityReasoning" class="text-gray-700"></p>
+            </div>
+
+            <!-- Home Care Steps -->
+            <div id="homeCareSection" class="mb-6">
+                <h3 class="text-gray-800 font-bold text-lg mb-2" id="labelHomeCare">Home care steps:</h3>
+                <ul id="homeCareList" class="list-disc list-inside space-y-1 text-gray-700"></ul>
+            </div>
+
+            <!-- Product Suggestions -->
+            <div id="productsSection" class="hidden mb-6">
+                <h3 class="text-gray-800 font-bold text-lg mb-2" id="labelProducts">Relevant products:</h3>
+                <ul id="productsList" class="space-y-2"></ul>
+            </div>
+
+            <!-- Confidence Score -->
+            <div class="mb-6">
+                <p class="text-gray-600 text-sm">
+                    <span id="labelConfidence">Confidence:</span>
+                    <span id="confidenceScore" class="font-semibold"></span>
+                </p>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="bg-gray-100 border border-gray-300 rounded p-4">
+                <p id="disclaimer" class="text-gray-600 text-sm italic"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                labelSymptoms: "Describe your child's symptoms",
+                labelAge: "Child's age (months)",
+                labelTemp: "Temperature (°C) - Optional",
+                labelDuration: "Duration (hours) - Optional",
+                submitBtn: "Get Triage Assessment",
+                loading: "Analyzing symptoms...",
+                labelAction: "What to do:",
+                labelReasoning: "Why this assessment:",
+                labelHomeCare: "Home care steps:",
+                labelProducts: "Relevant products:",
+                labelConfidence: "Confidence:",
+                deferText: "Please consult a doctor",
+                errorTitle: "Error",
+                symptomsPlaceholder: "e.g., My baby has a fever of 38.5°C for 2 days, runny nose, and is not eating well",
+                agePlaceholder: "e.g., 18",
+                tempPlaceholder: "e.g., 38.5",
+                durationPlaceholder: "e.g., 48",
+                toggleText: "Switch to Arabic / التبديل إلى العربية"
+            },
+            ar: {
+                labelSymptoms: "صف أعراض طفلك",
+                labelAge: "عمر الطفل (بالأشهر)",
+                labelTemp: "درجة الحرارة (°C) - اختياري",
+                labelDuration: "المدة (بالساعات) - اختياري",
+                submitBtn: "احصل على تقييم الفرز",
+                loading: "جارٍ تحليل الأعراض...",
+                labelAction: "ماذا تفعل:",
+                labelReasoning: "سبب هذا التقييم:",
+                labelHomeCare: "خطوات الرعاية المنزلية:",
+                labelProducts: "المنتجات ذات الصلة:",
+                labelConfidence: "الثقة:",
+                deferText: "يرجى استشارة الطبيب",
+                errorTitle: "خطأ",
+                symptomsPlaceholder: "مثال: طفلي لديه حمى 38.5 درجة منذ يومين، سيلان أنف، ولا يأكل جيداً",
+                agePlaceholder: "مثال: 18",
+                tempPlaceholder: "مثال: 38.5",
+                durationPlaceholder: "مثال: 48",
+                toggleText: "Switch to English / التبديل إلى الإنجليزية"
+            }
+        };
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            document.getElementById('labelSymptoms').textContent = t.labelSymptoms;
+            document.getElementById('labelAge').textContent = t.labelAge;
+            document.getElementById('labelTemp').textContent = t.labelTemp;
+            document.getElementById('labelDuration').textContent = t.labelDuration;
+            document.getElementById('submitBtn').textContent = t.submitBtn;
+            document.getElementById('symptoms').placeholder = t.symptomsPlaceholder;
+            document.getElementById('childAge').placeholder = t.agePlaceholder;
+            document.getElementById('temperature').placeholder = t.tempPlaceholder;
+            document.getElementById('duration').placeholder = t.durationPlaceholder;
+            document.getElementById('toggleText').textContent = t.toggleText;
+
+            // RTL for Arabic
+            document.getElementById('app').setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        }
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'ar' : 'en');
+        });
+
+        document.getElementById('triageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Hide previous results
+            document.getElementById('response').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('loading').classList.remove('hidden');
+
+            // Gather form data
+            const symptoms = document.getElementById('symptoms').value;
+            const childAge = parseInt(document.getElementById('childAge').value);
+            const temperature = document.getElementById('temperature').value;
+            const duration = document.getElementById('duration').value;
+
+            const payload = {
+                symptoms,
+                child_age_months: childAge,
+                temperature_celsius: temperature ? parseFloat(temperature) : null,
+                duration_hours: duration ? parseInt(duration) : null
+            };
+
+            try {
+                const response = await fetch('/triage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayResponse(data);
+
+            } catch (error) {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+                document.getElementById('errorMessage').textContent = error.message;
+            }
+        });
+
+        function displayResponse(data) {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('response').classList.remove('hidden');
+
+            // Severity badge
+            const severityColors = {
+                low: 'bg-green-500',
+                medium: 'bg-yellow-500',
+                high: 'bg-orange-500',
+                emergency: 'bg-red-600'
+            };
+            const badge = document.getElementById('severityBadge');
+            badge.className = `inline-block px-4 py-2 rounded-full text-white font-semibold text-lg ${severityColors[data.severity]}`;
+            badge.textContent = data.severity.toUpperCase();
+
+            // Defer banner
+            if (data.defer_to_doctor) {
+                document.getElementById('deferBanner').classList.remove('hidden');
+                document.getElementById('deferReason').textContent = data.defer_reason || '';
+            } else {
+                document.getElementById('deferBanner').classList.add('hidden');
+            }
+
+            // Suggested action
+            document.getElementById('suggestedAction').textContent = data.suggested_action;
+
+            // Severity reasoning
+            document.getElementById('severityReasoning').textContent = data.severity_reasoning;
+
+            // Home care
+            const homeCareList = document.getElementById('homeCareList');
+            homeCareList.innerHTML = '';
+            if (data.home_care && data.home_care.length > 0) {
+                data.home_care.forEach(step => {
+                    const li = document.createElement('li');
+                    li.textContent = step;
+                    homeCareList.appendChild(li);
+                });
+                document.getElementById('homeCareSection').classList.remove('hidden');
+            } else {
+                document.getElementById('homeCareSection').classList.add('hidden');
+            }
+
+            // Products
+            if (data.relevant_products && data.relevant_products.length > 0) {
+                const productsList = document.getElementById('productsList');
+                productsList.innerHTML = '';
+                data.relevant_products.forEach(product => {
+                    const li = document.createElement('li');
+                    li.className = 'bg-pink-50 p-3 rounded border border-pink-300';
+                    li.textContent = `${product.name} (${product.id})`;
+                    productsList.appendChild(li);
+                });
+                document.getElementById('productsSection').classList.remove('hidden');
+            } else {
+                document.getElementById('productsSection').classList.add('hidden');
+            }
+
+            // Confidence
+            document.getElementById('confidenceScore').textContent = `${(data.confidence_score * 100).toFixed(0)}%`;
+
+            // Disclaimer
+            document.getElementById('disclaimer').textContent = data.disclaimer;
+        }
+    </script>
+</body>
+</html>

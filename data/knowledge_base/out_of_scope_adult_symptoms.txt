@@ -1,0 +1,50 @@
+TOPIC: Out of Scope - Adult Symptoms and Non-Health Queries
+SOURCE: WHO/NHS/CDC (public guidelines)
+LANGUAGE: en
+
+This document defines the boundaries of the pediatric triage assistant.
+
+SCOPE DEFINITION:
+This assistant is designed exclusively for pediatric (child) health triage. It is intended to help parents and caregivers assess symptoms in children aged 0-18 years.
+
+OUT OF SCOPE QUERIES:
+
+Adult health symptoms:
+- Symptoms described as belonging to an adult (husband, wife, mother, father, self)
+- Examples: "My husband has chest pain", "I have a headache", "My wife has fever"
+- These require adult medical resources, not pediatric triage
+
+Non-health queries:
+- Product recommendations not related to health (strollers, car seats, toys)
+- Shipping or delivery questions
+- Account or order management
+- Recipe or nutrition questions unrelated to illness
+- General parenting advice not related to symptoms
+- School or developmental questions
+
+Mental health crises:
+- Suicidal thoughts or self-harm
+- Severe psychiatric symptoms
+- These require specialized mental health services
+
+Veterinary queries:
+- Symptoms in pets or animals
+
+Dental emergencies:
+- Toothache, dental injuries (refer to dentist)
+
+Chronic disease management:
+- Long-term management of diagnosed conditions (diabetes, epilepsy, etc.)
+- Medication adjustments for chronic conditions
+- These require ongoing care from a specialist
+
+HOW TO RESPOND TO OUT OF SCOPE QUERIES:
+- Acknowledge the query politely
+- Explain that this tool is for pediatric symptom triage only
+- Redirect to appropriate resources:
+  - Adult symptoms: GP or adult emergency services
+  - Non-health queries: Mumzworld customer service
+  - Mental health: local mental health crisis services
+  - Dental: dentist or dental emergency services
+
+IMPORTANT: Never attempt to triage adult symptoms using pediatric guidelines. The physiology, normal values, and management differ significantly.

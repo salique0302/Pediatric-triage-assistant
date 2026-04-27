@@ -1,0 +1,282 @@
+[
+  {
+    "id": "P001",
+    "name_en": "Digital Ear Thermometer",
+    "name_ar": "ميزان حرارة رقمي للأذن",
+    "category": "fever",
+    "use_case_keywords": ["fever", "temperature", "hot", "warm", "check temperature"]
+  },
+  {
+    "id": "P002",
+    "name_en": "Forehead Thermometer Strip",
+    "name_ar": "شريط قياس الحرارة للجبهة",
+    "category": "fever",
+    "use_case_keywords": ["fever", "temperature", "forehead", "monitor temperature"]
+  },
+  {
+    "id": "P003",
+    "name_en": "Calpol Infant Suspension 120mg/5ml",
+    "name_ar": "كالبول معلق للأطفال 120 مجم/5 مل",
+    "category": "fever",
+    "use_case_keywords": ["fever", "pain", "paracetamol", "temperature", "ache"]
+  },
+  {
+    "id": "P004",
+    "name_en": "Nurofen for Children Suspension",
+    "name_ar": "نوروفين للأطفال معلق",
+    "category": "fever",
+    "use_case_keywords": ["fever", "pain", "ibuprofen", "inflammation", "temperature"]
+  },
+  {
+    "id": "P005",
+    "name_en": "Cooling Fever Patches (6 pack)",
+    "name_ar": "لصقات تبريد الحمى (6 قطع)",
+    "category": "fever",
+    "use_case_keywords": ["fever", "cooling", "temperature", "forehead", "hot"]
+  },
+  {
+    "id": "P006",
+    "name_en": "ORS Sachets Oral Rehydration Salts (10 pack)",
+    "name_ar": "أكياس محلول الإماهة الفموية (10 أكياس)",
+    "category": "hydration",
+    "use_case_keywords": ["diarrhea", "vomiting", "dehydration", "rehydration", "fluid loss", "electrolytes"]
+  },
+  {
+    "id": "P007",
+    "name_en": "Pedialyte Electrolyte Solution",
+    "name_ar": "محلول بيدياليت للكهارل",
+    "category": "hydration",
+    "use_case_keywords": ["dehydration", "diarrhea", "vomiting", "electrolytes", "fluid replacement"]
+  },
+  {
+    "id": "P008",
+    "name_en": "Baby Water Bottle with Measurement",
+    "name_ar": "زجاجة ماء للأطفال مع مقياس",
+    "category": "hydration",
+    "use_case_keywords": ["hydration", "fluid intake", "water", "drinking"]
+  },
+  {
+    "id": "P009",
+    "name_en": "Saline Nasal Drops for Infants",
+    "name_ar": "قطرات أنفية ملحية للرضع",
+    "category": "respiratory",
+    "use_case_keywords": ["congestion", "stuffy nose", "runny nose", "cold", "nasal", "blocked nose"]
+  },
+  {
+    "id": "P010",
+    "name_en": "Nasal Aspirator Bulb Syringe",
+    "name_ar": "شفاط أنفي بالمحقنة",
+    "category": "respiratory",
+    "use_case_keywords": ["congestion", "stuffy nose", "mucus", "nasal", "blocked nose", "cold"]
+  },
+  {
+    "id": "P011",
+    "name_en": "Electric Nasal Aspirator",
+    "name_ar": "شفاط أنفي كهربائي",
+    "category": "respiratory",
+    "use_case_keywords": ["congestion", "stuffy nose", "mucus", "nasal", "blocked nose"]
+  },
+  {
+    "id": "P012",
+    "name_en": "Baby Vapor Rub Chest Balm",
+    "name_ar": "مرهم بخاري للصدر للأطفال",
+    "category": "respiratory",
+    "use_case_keywords": ["cough", "congestion", "cold", "breathing", "chest", "respiratory"]
+  },
+  {
+    "id": "P013",
+    "name_en": "Cool Mist Humidifier for Baby Room",
+    "name_ar": "جهاز ترطيب الهواء البارد لغرفة الطفل",
+    "category": "respiratory",
+    "use_case_keywords": ["cough", "congestion", "dry air", "breathing", "cold", "croup"]
+  },
+  {
+    "id": "P014",
+    "name_en": "Portable Mesh Nebulizer",
+    "name_ar": "جهاز بخار شبكي محمول",
+    "category": "respiratory",
+    "use_case_keywords": ["asthma", "wheezing", "breathing difficulty", "nebulizer", "respiratory", "croup"]
+  },
+  {
+    "id": "P015",
+    "name_en": "Pulse Oximeter Fingertip",
+    "name_ar": "جهاز قياس الأكسجين في الدم",
+    "category": "general_monitoring",
+    "use_case_keywords": ["breathing", "oxygen", "respiratory", "monitoring", "pulse", "wheezing"]
+  },
+  {
+    "id": "P016",
+    "name_en": "Baby Probiotics Drops",
+    "name_ar": "قطرات البروبيوتيك للأطفال",
+    "category": "digestive",
+    "use_case_keywords": ["diarrhea", "digestive", "gut health", "stomach", "colic", "probiotics"]
+  },
+  {
+    "id": "P017",
+    "name_en": "Gripe Water for Colic Relief",
+    "name_ar": "ماء الريح لتخفيف المغص",
+    "category": "digestive",
+    "use_case_keywords": ["colic", "gas", "stomach pain", "bloating", "digestive", "crying"]
+  },
+  {
+    "id": "P018",
+    "name_en": "Simethicone Gas Relief Drops",
+    "name_ar": "قطرات سيميثيكون لتخفيف الغازات",
+    "category": "digestive",
+    "use_case_keywords": ["gas", "bloating", "colic", "stomach pain", "digestive"]
+  },
+  {
+    "id": "P019",
+    "name_en": "Zinc Supplement Syrup for Children",
+    "name_ar": "شراب الزنك للأطفال",
+    "category": "digestive",
+    "use_case_keywords": ["diarrhea", "zinc", "immune support", "recovery"]
+  },
+  {
+    "id": "P020",
+    "name_en": "Hydrocortisone Cream 1% (Baby Safe)",
+    "name_ar": "كريم هيدروكورتيزون 1% (آمن للأطفال)",
+    "category": "rash",
+    "use_case_keywords": ["rash", "eczema", "itching", "skin irritation", "inflammation", "allergic rash"]
+  },
+  {
+    "id": "P021",
+    "name_en": "Calamine Lotion",
+    "name_ar": "لوشن كالامين",
+    "category": "rash",
+    "use_case_keywords": ["rash", "itching", "chickenpox", "insect bite", "skin irritation"]
+  },
+  {
+    "id": "P022",
+    "name_en": "Zinc Oxide Diaper Rash Cream",
+    "name_ar": "كريم أكسيد الزنك لطفح الحفاضات",
+    "category": "rash",
+    "use_case_keywords": ["diaper rash", "nappy rash", "skin irritation", "rash", "bottom rash"]
+  },
+  {
+    "id": "P023",
+    "name_en": "Fragrance-Free Baby Moisturizer",
+    "name_ar": "مرطب للأطفال خالٍ من العطور",
+    "category": "rash",
+    "use_case_keywords": ["eczema", "dry skin", "rash", "skin care", "moisturize"]
+  },
+  {
+    "id": "P024",
+    "name_en": "Antihistamine Syrup for Children (Cetirizine)",
+    "name_ar": "شراب مضاد للهيستامين للأطفال (سيتيريزين)",
+    "category": "rash",
+    "use_case_keywords": ["allergic rash", "hives", "itching", "allergy", "urticaria"]
+  },
+  {
+    "id": "P025",
+    "name_en": "Baby Nail Scissors (Rounded Tip)",
+    "name_ar": "مقص أظافر للأطفال (طرف مستدير)",
+    "category": "general_monitoring",
+    "use_case_keywords": ["scratching", "skin", "nails"]
+  },
+  {
+    "id": "P026",
+    "name_en": "Infant Paracetamol Suppositories",
+    "name_ar": "تحاميل باراسيتامول للرضع",
+    "category": "fever",
+    "use_case_keywords": ["fever", "temperature", "pain", "vomiting", "cannot take oral medication"]
+  },
+  {
+    "id": "P027",
+    "name_en": "Baby Electrolyte Ice Pops",
+    "name_ar": "مصاصات الكهارل للأطفال",
+    "category": "hydration",
+    "use_case_keywords": ["dehydration", "vomiting", "diarrhea", "fluid intake", "electrolytes"]
+  },
+  {
+    "id": "P028",
+    "name_en": "Vitamin D3 Drops for Infants",
+    "name_ar": "قطرات فيتامين د3 للرضع",
+    "category": "general_monitoring",
+    "use_case_keywords": ["vitamin d", "supplement", "immune", "bone health"]
+  },
+  {
+    "id": "P029",
+    "name_en": "Baby Feeding Syringe Set",
+    "name_ar": "طقم محاقن إطعام الأطفال",
+    "category": "general_monitoring",
+    "use_case_keywords": ["medication", "oral medication", "feeding", "syringe"]
+  },
+  {
+    "id": "P030",
+    "name_en": "Saline Nasal Spray (Isotonic)",
+    "name_ar": "بخاخ أنفي ملحي (متساوي التوتر)",
+    "category": "respiratory",
+    "use_case_keywords": ["congestion", "stuffy nose", "cold", "nasal", "sinusitis"]
+  },
+  {
+    "id": "P031",
+    "name_en": "Baby Vaporizer Steam Inhaler",
+    "name_ar": "جهاز بخار للأطفال",
+    "category": "respiratory",
+    "use_case_keywords": ["cough", "congestion", "cold", "breathing", "croup", "steam"]
+  },
+  {
+    "id": "P032",
+    "name_en": "Ear Pain Relief Drops",
+    "name_ar": "قطرات تخفيف ألم الأذن",
+    "category": "general_monitoring",
+    "use_case_keywords": ["ear pain", "ear infection", "earache", "otitis"]
+  },
+  {
+    "id": "P033",
+    "name_en": "Baby Oral Rehydration Solution Ready-to-Drink",
+    "name_ar": "محلول إماهة فموي جاهز للشرب للأطفال",
+    "category": "hydration",
+    "use_case_keywords": ["diarrhea", "vomiting", "dehydration", "fluid loss", "gastroenteritis"]
+  },
+  {
+    "id": "P034",
+    "name_en": "Infant Fever Reducer Suppository (Ibuprofen)",
+    "name_ar": "تحاميل خافض الحرارة للرضع (إيبوبروفين)",
+    "category": "fever",
+    "use_case_keywords": ["fever", "high temperature", "pain", "cannot take oral medication"]
+  },
+  {
+    "id": "P035",
+    "name_en": "Baby Stethoscope (Educational)",
+    "name_ar": "سماعة طبية للأطفال (تعليمية)",
+    "category": "general_monitoring",
+    "use_case_keywords": ["monitoring", "breathing", "heart rate", "respiratory"]
+  },
+  {
+    "id": "P036",
+    "name_en": "Antiseptic Wound Spray for Children",
+    "name_ar": "بخاخ مطهر للجروح للأطفال",
+    "category": "rash",
+    "use_case_keywords": ["wound", "cut", "scratch", "skin break", "antiseptic"]
+  },
+  {
+    "id": "P037",
+    "name_en": "Baby Probiotic Powder Sachets",
+    "name_ar": "أكياس مسحوق البروبيوتيك للأطفال",
+    "category": "digestive",
+    "use_case_keywords": ["diarrhea", "antibiotic", "gut health", "digestive", "probiotics", "stomach"]
+  },
+  {
+    "id": "P038",
+    "name_en": "Infant Gas Relief Bicycle Leg Roller",
+    "name_ar": "بكرة تمرين الساقين لتخفيف الغازات",
+    "category": "digestive",
+    "use_case_keywords": ["gas", "colic", "bloating", "stomach pain", "constipation"]
+  },
+  {
+    "id": "P039",
+    "name_en": "Baby Sunscreen SPF 50+ (Mineral)",
+    "name_ar": "واقي شمس للأطفال SPF 50+ (معدني)",
+    "category": "rash",
+    "use_case_keywords": ["sunburn", "sun protection", "skin", "outdoor"]
+  },
+  {
+    "id": "P040",
+    "name_en": "Digital Blood Pressure Monitor (Pediatric Cuff)",
+    "name_ar": "جهاز قياس ضغط الدم الرقمي (كفة للأطفال)",
+    "category": "general_monitoring",
+    "use_case_keywords": ["blood pressure", "monitoring", "vital signs", "health check"]
+  }
+]

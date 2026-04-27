@@ -1,0 +1,50 @@
+TOPIC: Diarrhea Management in Children
+SOURCE: WHO/NHS/CDC (public guidelines)
+LANGUAGE: en
+
+Diarrhea is defined as loose or watery stools occurring more frequently than normal. It is very common in children and usually caused by viral gastroenteritis.
+
+CAUSES:
+- Viral infections (most common): rotavirus, norovirus, adenovirus
+- Bacterial infections: salmonella, E. coli, campylobacter
+- Food intolerance or allergy
+- Antibiotics (disrupts gut bacteria)
+- Parasites (less common)
+
+HOME MANAGEMENT:
+
+Hydration is the priority:
+- Continue breastfeeding if infant is breastfed
+- Offer oral rehydration solution (ORS) frequently in small amounts
+- For older children: water, diluted juice, broth, ORS
+- Avoid sugary drinks or undiluted juice (can worsen diarrhea)
+- Signs of adequate hydration: regular wet diapers, moist mouth, tears when crying
+
+Feeding:
+- Do not withhold food if child is hungry
+- Continue normal diet as tolerated
+- BRAT diet (bananas, rice, applesauce, toast) is gentle but not required
+- Avoid fatty, spicy, or very sweet foods temporarily
+- Probiotics may help shorten duration
+
+What NOT to do:
+- Do not give anti-diarrheal medications to children without doctor's advice
+- Do not give antibiotics unless prescribed (most cases are viral)
+- Do not give fruit juice or soda
+
+WHEN TO SEE A DOCTOR:
+
+Urgent (same day):
+- Signs of dehydration: dry mouth, no tears, sunken eyes, no wet diaper for 6+ hours
+- Blood or mucus in stool
+- Severe abdominal pain
+- High fever (above 39°C)
+- Diarrhea lasting more than 7 days
+- Child under 6 months with diarrhea
+- Recent travel to developing countries
+
+Emergency (call ambulance):
+- Severe dehydration: extreme lethargy, unresponsive, sunken fontanelle in babies
+- Signs of shock: cold hands/feet, rapid breathing, pale/mottled skin
+
+Most cases resolve in 5-7 days with supportive care.
