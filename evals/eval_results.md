@@ -1,28 +1,27 @@
 # Evaluation Results
 
-**Overall Score:** TBD (run `python evals/run_evals.py` after starting the server)
+**Overall Score:** 42/48 (87.5%)
 
 **Pass Threshold:** 80%
 
-**Status:** Not yet run
+**Status:** ✅ PASS
 
-## Instructions
 
-1. Start the server: `uvicorn app.main:app --reload`
-2. Run evaluations: `python evals/run_evals.py`
-3. Results will be updated in this file
+## Test Case Results
 
-## Test Coverage
+| ID | Description | Schema | Severity | Defer | Lang | Total |
+|---|---|---|---|---|---|---|
+| TC-01 | Fever 38.5°C, 14-month-old, 2 days | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-02 | High fever 40°C + rash, 18-month-old | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-03 | Seizure - emergency keyword, 2-year-old | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-04 | Arabic: Fever 39°C, 8-month-old | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-05 | Arabic: Skin rash after eating | ✅ | ❌ | ✅ | ✅ | 3/4 |
+| TC-06 | Out of scope: adult symptom (husband) | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-07 | Out of scope: product recommendation | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-08 | Vague/ambiguous: baby seems off | ✅ | ❌ | ✅ | ✅ | 3/4 |
+| TC-09 | Mild cold, runny nose, 3-year-old | ✅ | ❌ | ❌ | ✅ | 2/4 |
+| TC-10 | Diarrhea 6 times today, 9-month-old | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| TC-11 | Emergency: not breathing, blue lips | ✅ | ❌ | ✅ | ✅ | 3/4 |
+| TC-12 | Arabic: Ear pain, 2-year-old girl | ✅ | ❌ | ✅ | ✅ | 3/4 |
 
-The evaluation suite includes 12 test cases covering:
-- 3 clear in-scope EN symptoms (fever, cold, diarrhea)
-- 3 clear in-scope AR symptoms (fever, rash, ear pain)
-- 2 adversarial/out-of-scope inputs (adult symptom, product question)
-- 2 ambiguous/low-confidence inputs (vague symptoms)
-- 2 emergency keyword inputs (seizure, not breathing)
-
-Each test case is scored on 4 dimensions:
-1. **Schema validity**: Response parses and validates against TriageResponse schema
-2. **Severity accuracy**: Severity level matches expected
-3. **Uncertainty handling**: defer_to_doctor flag is correct
-4. **Language correctness**: Response is in the correct language (EN or AR)
+**Total:** 42/48 (87.5%)
