@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 # Configure environment
 cp .env.example .env
-# Edit .env and add your OPENROUTER_API_KEY (get free key at openrouter.ai)
+# Edit .env and add your GROQ_API_KEY (get free key at console.groq.com)
 
 # Ingest knowledge base (one-time setup)
 python scripts/ingest_kb.py
@@ -142,11 +142,12 @@ Mothers in the GCC trust Mumzworld for baby products, but when their child is si
 - **Updatability**: Adding new guidelines = drop a file + re-run ingestion
 - **Latency**: RAG adds ~1-2 seconds. Acceptable for this use case.
 
-### Why Llama 3.3 70B via OpenRouter?
+### Why Llama 3.3 70B via Groq?
 
-- **Free tier**: No API costs during development
+- **Fast inference**: Groq's LPU delivers sub-second response times
+- **Free tier**: Generous rate limits for development
 - **Multilingual**: Strong Arabic support
-- **Structured output**: Follows JSON schema at temperature=0.1
+- **Structured output**: Follows JSON schema reliably at temperature=0.1
 
 ### Why Local Embeddings?
 
@@ -176,21 +177,21 @@ Mothers in the GCC trust Mumzworld for baby products, but when their child is si
 
 Three hard-coded uncertainty triggers:
 
-### 1. Low Confidence Score (< 0.5)
-If LLM assigns `confidence_score < 0.5`, system automatically sets `defer_to_doctor=true`. Catches cases where model is unsure even if symptoms seem minor.
+### 1. Low Confidence Score (< 0.3)
+If LLM assigns `confidence_score < 0.3`, system automatically sets `defer_to_doctor=true`. Threshold deliberately kept low to avoid over-deferring on common manageable conditions — only triggers when the model is genuinely uncertain.
 
 ### 2. Emergency Keywords
 Hardcoded EN/AR keyword lists bypass LLM severity assessment. If any keyword is detected (e.g., "seizure", "not breathing", "تشنج"), severity is immediately set to "emergency" and `defer_to_doctor=true`. Cannot risk the LLM missing life-threatening symptoms.
 
-### 3. No Relevant Context Retrieved
-If RAG retrieval fails (similarity < 0.3), system sets `out_of_scope=true` and `defer_to_doctor=true`. LLM is explicitly instructed not to use parametric knowledge.
+### 3. No Relevant Context + Low Confidence
+If RAG retrieval fails (similarity < 0.3) AND confidence is also low (< 0.5), system sets `defer_to_doctor=true`. Low context alone does not force deferral — the LLM may still reason correctly from partial context.
 
 ---
 
 ## Tooling
 
 - **Claude Code (Sonnet)**: Code generation, module design, prompt iteration, knowledge base content
-- **OpenRouter**: LLM gateway for runtime inference (Llama 3.3 70B free tier)
+- **Groq**: LLM inference API (Llama 3.3 70B Versatile, free tier)
 - **sentence-transformers**: Local embedding model (all-MiniLM-L6-v2)
 - **ChromaDB**: Local vector store for RAG
 
@@ -205,7 +206,7 @@ If RAG retrieval fails (similarity < 0.3), system sets `out_of_scope=true` and `
 - **Prompt design**: Initial prompts too verbose; manually rewrote to be more directive
 - **Arabic prompt**: AI translated from English; manually rewrote from scratch in native Arabic
 - **Emergency keywords**: Expanded with Gulf Arabic variants
-- **Uncertainty threshold**: Raised from 0.3 to 0.5 after testing showed too many false negatives
+- **Uncertainty threshold**: Lowered from 0.5 to 0.3 after testing showed too many false positives (over-deferral to doctor for common manageable conditions)
 
 ---
 
