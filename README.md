@@ -53,7 +53,7 @@ uvicorn app.main:app --reload
 │  3. Check emergency keywords (hardcoded rules)       │
 │  4. RAG retrieval (ChromaDB)                         │
 │  5. Build prompt (EN or AR template)                 │
-│  6. LLM call (OpenRouter)                            │
+│  6. LLM call (Groq — Llama 3.3 70B)                  │
 │  7. Parse + validate structured output (Pydantic)    │
 │  8. Apply uncertainty rules                          │
 │  9. Map to product catalog                           │
@@ -123,7 +123,8 @@ python evals/run_evals.py
 ### Known Limitations
 
 - **Severity calibration**: Model is slightly conservative, upgrading some medium cases to high. Acceptable for triage — false positives (over-caution) are safer than false negatives.
-- **Emergency keyword miss (TC-11)**: "not breathing" classified as `high` instead of `emergency`. Emergency keywords should be non-overridable — this is a known bug.
+- **TC-09 specifically**: Mild cold in a 3-year-old was assigned `medium` severity instead of `low`. The model appears to upgrade respiratory symptoms conservatively regardless of age — acceptable bias for triage, but worth noting.
+- **Emergency keyword miss (TC-11)**: "not breathing" was initially classified as `high` instead of `emergency`. Fixed by adding "not breathing" and "stopped breathing" to the emergency keyword list in safety.py after eval run. TC-11 now passes.
 - **Medical accuracy beyond severity**: Requires clinical review. Evals validate structure and severity bands, not clinical correctness of home care advice.
 - **Arabic quality**: Requires native Gulf Arabic speaker review for medical terminology accuracy.
 
@@ -178,7 +179,7 @@ Mothers in the GCC trust Mumzworld for baby products, but when their child is si
 Three hard-coded uncertainty triggers:
 
 ### 1. Low Confidence Score (< 0.3)
-If LLM assigns `confidence_score < 0.3`, system automatically sets `defer_to_doctor=true`. Threshold deliberately kept low to avoid over-deferring on common manageable conditions — only triggers when the model is genuinely uncertain.
+If LLM assigns `confidence_score < 0.3`, system automatically sets `defer_to_doctor=true`. Threshold deliberately kept low to avoid over-deferring on common manageable conditions — only triggers when the model is genuinely uncertain. Final threshold: 0.3, lowered from 0.5 after evals showed over-deferral on common manageable conditions.
 
 ### 2. Emergency Keywords
 Hardcoded EN/AR keyword lists bypass LLM severity assessment. If any keyword is detected (e.g., "seizure", "not breathing", "تشنج"), severity is immediately set to "emergency" and `defer_to_doctor=true`. Cannot risk the LLM missing life-threatening symptoms.
